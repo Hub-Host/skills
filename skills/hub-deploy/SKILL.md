@@ -5,7 +5,7 @@ description: Deploy projects to Hub Cloud, check releases and logs, and manage a
 
 # Deploy to Hub Cloud
 
-Use connected Hub MCP tools when available. Hosted MCP is at `https://cloud.myhub.host/mcp`: the browser connection selects one organization and grants read or manage access. CLI and local stdio MCP use the account and organization saved by `hub login`. CLI `--json` and MCP return the same operation results.
+Installing this skill requires no Hub login. Authenticate only when a requested operation needs access. Use connected Hub MCP tools when available. Hosted MCP is at `https://cloud.myhub.host/mcp`: the browser connection selects one organization and grants read or manage access. CLI and local stdio MCP use the account and organization saved by `hub login`. CLI `--json` and MCP return the same operation results.
 
 ## Select the project and destination
 
@@ -48,7 +48,7 @@ JSON and MCP errors use `{ "ok": false, "error": { "code": "â€¦", "message": "â€
 - `needs_choice`: choose local files or pushed source based on the user's intent; supply `--local` or `--pushed` for CLI deployment.
 - `cli_outdated`: update the installed CLI using the error hint, then retry.
 - `forbidden`: the selected account cannot perform this operation. Report the required access; do not switch accounts or broaden app access to work around it.
-- `insufficient_scope`: the hosted connection is read-only. Reconnect and explicitly approve manage access for a requested write; organization roles still apply. Connections can be revoked at `https://cloud.myhub.host/mcp/connections`.
+- `insufficient_scope`: the hosted connection is read-only. For a requested write, revoke the old connection at `https://cloud.myhub.host/mcp/connections`, clear its saved authorization in the agent, and reconnect with explicit read/write approval. Refreshing cannot widen consent; organization roles still apply.
 - `network_timeout` or `cancelled`: each request has a 120-second deadline, including its response body; MCP cancellation aborts the local request. A mutation may already have been accepted. Inspect app status, releases, or environment names before retrying; cancellation does not undo server-side work. Never retry a deployment blindly after a lost response.
 
 For details only when needed: [quickstart](https://docs.myhub.host/quick-start), [MCP reference](https://docs.myhub.host/mcp), [CLI reference](https://docs.myhub.host/cli), [app configuration](https://docs.myhub.host/deploy).
