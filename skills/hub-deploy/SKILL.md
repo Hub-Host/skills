@@ -16,7 +16,7 @@ Use an explicit app name and preserve the user's chosen instance (`prod` by defa
 Choose the source the user intends:
 
 - Local changes: `hub deploy /absolute/project --name my-app --local --json`. Local stdio MCP also accepts `hub_deploy` with `name` and an absolute `dir`. Hosted MCP cannot read a local project directory.
-- Pushed GitHub source: `hub_deploy` with `name` and `git: "owner/repository"`, or `hub deploy --git owner/repository --name my-app --json`. Optional `branch`, `path`, and `watch` map to `--branch`, `--path`, and `--no-watch`. GitHub deployments watch future pushes by default. Do not push or substitute repository contents for local changes unless that source matches the user's intent.
+- Pushed GitHub source: `hub_deploy` with `name` and `git: "owner/repository"`, or `hub deploy --git owner/repository --name my-app --json`. Optional `branch` and `path` map to `--branch` and `--path`; `watch: false` maps to `--no-watch`. GitHub deployments watch future pushes by default. Do not push or substitute repository contents for local changes unless that source matches the user's intent.
 
 Hub detects Compose, Dockerfiles, Node apps with start scripts, frontend apps with build scripts, and static folders with `index.html`. Preserve working project configuration. A `hub.yaml` is optional. Hosted `hub_validate` accepts its text as `manifest` (at most 64 KiB); local stdio accepts `dir`. CLI uses `hub validate /absolute/project --json`.
 
