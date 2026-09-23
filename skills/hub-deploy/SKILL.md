@@ -44,7 +44,7 @@ Use `hub_app_runtime` or `hub app my-app runtime --json` to inspect without waki
 
 `hub_app_suspend` / `hub app my-app suspend --json` snapshots RAM and allows request-triggered wake. These operations affect **every service in that instance**. Poll `hub_app_runtime` with the returned `operation` ID, or `runtime --operation ID --json`, until `succeeded`; `failed`, `expired` and `unknown` require inspection, not a success claim. Shared dependencies can prevent suspension. Worker moves and dependency wiring remain platform-admin operations.
 
-Read `hub_usage` / `hub usage --json` when checking quotas. AI usage is AI Credits in USD. Runtime inventory is not a compute invoice. On the local worker provider, verified plain HTML and built frontend output use shared static hosting without an app VM. Frontends still run a build (JSX/SCSS etc.); only the output files are served. Custom Dockerfiles, Compose and server-rendered apps use VMs. Static output is limited to 64 MiB, 8 MiB per file and 2,048 files. Check app status for `hosting.kind`; do not promise unlimited/free usage. Never switch paid plans or enable spending to bypass a limit.
+Read `hub_usage` / `hub usage --json` when checking quotas. AI usage is AI Credits in USD. Runtime inventory is not a compute invoice. On the local worker provider, verified plain HTML and built frontend output use shared static hosting without an app VM. Frontends still run a build (JSX/SCSS etc.); only the output files are served. Custom Dockerfiles, Compose and server-rendered apps use VMs. Static output is limited to 512 MiB, 50 MiB per file and 2,048 files. Check app status for `hosting.kind`; do not promise unlimited/free usage. Never switch paid plans or enable spending to bypass a limit.
 
 ## Changes and recovery
 
